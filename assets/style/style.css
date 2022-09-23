@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background: #999;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  color: red;
+}
+
+nav h2 {
+  letter-spacing: 5px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  flex-basis: 25%;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: red;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+header .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-basis: 50%;
+  padding: 20px;
+  margin-top: 100px;
+  color: white;
+}
+
+header .text {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+header .text span {
+  color: red;
+  transition: 200ms;
+}
+
+header .text span:hover {
+  color: blue;
+  cursor: grab;
+  font-size: 1.3em;
+}
+
+header .image img {
+  width: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  margin: 20px;
+  background: white;
+  border-radius: 5px;
+}
+
+.hide-show {
+  width: 150px;
+  height: 40px;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* api */
+
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.burgers {
+  width: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* end of api */
+
+main .flex-container-column {
+  display: flex;
+  flex-direction: column;
+  margin: 0 100px;
+  gap: 2em;
+}
+
+main .flex-container-column header {
+  font-size: 2em;
+  font-weight: bold;
+  color: red;
+}
+
+main .flex-container-column .body {
+  font-size: 1.3em;
+  display: flex;
+  flex-direction: row;
+}
+
+main .flex-container-column section {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.content-image {
+  height: 100%;
+}
+
+.content-image img {
+  width: 500px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: 500ms;
+}
+
+.content-image img:hover {
+  transform: translate(0%, -5%);
+}

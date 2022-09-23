@@ -16,6 +16,16 @@ nav {
   justify-content: space-between;
   padding: 20px;
   color: red;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  transition: 200ms;
+  z-index: 10;
+}
+
+nav.observe {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 nav h2 {
@@ -100,23 +110,9 @@ header .image img {
   display: none;
 }
 
-/* api */
-
-.imageContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-  align-items: center;
+main.card {
+  margin-top: 200px;
 }
-
-.burgers {
-  width: 300px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-/* end of api */
 
 main .flex-container-column {
   display: flex;
@@ -151,6 +147,7 @@ main .flex-container-column section {
 
 .content-image {
   height: 100%;
+  margin: 0 auto;
 }
 
 .content-image img {
@@ -162,4 +159,42 @@ main .flex-container-column section {
 
 .content-image img:hover {
   transform: translate(0%, -5%);
+}
+
+/* Mobile Responsive */
+
+@media only screen and (max-width: 576px) {
+  nav h2 {
+    letter-spacing: normal;
+  }
+
+  nav ul li a {
+    font-size: 12px;
+  }
+
+  header .container {
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+
+  header .text {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .hide-show {
+    font-size: 2em;
+  }
+
+  main .flex-container-column {
+    margin: 0;
+  }
+
+  main .flex-container-column .body {
+    flex-direction: column;
+  }
+
+  .content-image img {
+    width: 250px;
+  }
 }

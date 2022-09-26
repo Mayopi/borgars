@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background-color: #c21010;
+  --text-color: #e64848;
+}
+
 body {
   font-family: "Quicksand", sans-serif;
   background: #999;
@@ -15,7 +20,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  color: red;
+  color: var(--text-color);
   position: fixed;
   width: 100%;
   top: 0;
@@ -41,7 +46,7 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  color: red;
+  color: var(--background-color);
   font-size: 1.3em;
   font-weight: bold;
 }
@@ -69,12 +74,11 @@ header .text {
 }
 
 header .text span {
-  color: red;
+  color: var(--text-color);
   transition: 200ms;
 }
 
 header .text span:hover {
-  color: blue;
   cursor: grab;
   font-size: 1.3em;
 }
@@ -97,7 +101,7 @@ header .image img {
   width: 150px;
   height: 40px;
   border: none;
-  background-color: red;
+  background-color: var(--background-color);
   color: white;
   font-size: 1.3em;
   font-weight: bold;
@@ -124,7 +128,7 @@ main .flex-container-column {
 main .flex-container-column header {
   font-size: 2em;
   font-weight: bold;
-  color: red;
+  color: var(--text-color);
 }
 
 main .flex-container-column .body {
@@ -142,7 +146,13 @@ main .flex-container-column section {
 .content-text {
   display: flex;
   flex-direction: column;
+  padding: 10px;
   gap: 1em;
+}
+
+.content-text span {
+  color: var(--text-color);
+  font-size: 1.5em;
 }
 
 .content-image {
@@ -159,6 +169,96 @@ main .flex-container-column section {
 
 .content-image img:hover {
   transform: translate(0%, -5%);
+}
+
+.content-feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.content-feature header h1 {
+  color: white;
+  font-size: 5em;
+}
+
+.content-feature .content-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.content-feature .content-body h1 {
+  text-align: center;
+  font-size: 2em;
+  color: white;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.meat-input {
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  border-radius: 5px;
+  border: none;
+  background: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.result-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 25%;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-container .api-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  gap: 2em;
+  margin: 20px;
+}
+
+.result-container .api-cards .cards-thumbnail img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.detail-button {
+  background: var(--background-color);
+  color: white;
+  border: none;
+  font-size: 1.5em;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#credit {
+  background: var(--background-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 20px;
 }
 
 /* Mobile Responsive */
@@ -184,6 +284,12 @@ main .flex-container-column section {
 
   .hide-show {
     font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    margin: 0;
+    border-radius: 0;
   }
 
   main .flex-container-column {
@@ -196,5 +302,9 @@ main .flex-container-column section {
 
   .content-image img {
     width: 250px;
+  }
+
+  .meat-input {
+    max-width: 90%;
   }
 }

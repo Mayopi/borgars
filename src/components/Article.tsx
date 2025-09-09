@@ -6,13 +6,16 @@ interface ArticleSectionProps {
   title: string;
   content: React.ReactNode;
   image?: string;
+  images?: string[];
   imageAlt?: string;
   reverse?: boolean;
 }
 
-const ArticleSection = ({ title, content, image, imageAlt, reverse = false }: ArticleSectionProps) => {
+const ArticleSection = ({ title, content, image, images, imageAlt, reverse = false }: ArticleSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  
+  const imagesToRender = images || (image ? [image] : []);
 
   return (
     <motion.div
@@ -27,17 +30,21 @@ const ArticleSection = ({ title, content, image, imageAlt, reverse = false }: Ar
         <div className={`space-y-4 text-gray-300 ${reverse ? 'md:order-2' : ''}`}>
           {content}
         </div>
-        {image && (
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className={`${reverse ? 'md:order-1' : ''}`}
-          >
-            <img
-              src={image}
-              alt={imageAlt}
-              className="w-full rounded-xl shadow-2xl hover-scale"
-            />
-          </motion.div>
+        {imagesToRender.length > 0 && (
+          <div className={`${reverse ? 'md:order-1' : ''} ${imagesToRender.length > 1 ? 'space-y-4' : ''}`}>
+            {imagesToRender.map((img, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02 }}
+              >
+                <img
+                  src={img}
+                  alt={`${imageAlt} ${index + 1}`}
+                  className="w-full rounded-xl shadow-2xl hover-scale"
+                />
+              </motion.div>
+            ))}
+          </div>
         )}
       </div>
     </motion.div>
@@ -55,7 +62,7 @@ const Article = () => {
           </p>
           <p>
             Orang orang bilang kita perlu berhenti makan Daging untuk menyelamatkan bumi kita, karena sebagai contoh kecil. 
-            Sapi adalah sumber populasi yang mencemari udara dengan sendawa mereka yang kaya akan Metana <strong className="text-burger-light">CH₄</strong>, 
+            Sapi adalah sumber populasi yang mencemari udara dengan sendawa mereka yang kaya akan Metana <strong className="text-burger-light">CH<sub>4</sub></strong>, 
             makanan dan minuman kita digunakan untuk pakan Mereka, serta lahan luas yang bisa digunakan untuk pertanian 
             dan perkebunan diambil untuk habitat Mereka.
           </p>
@@ -80,17 +87,57 @@ const Article = () => {
           <blockquote className="border-l-4 border-burger-red pl-4 italic">
             "Seluruh jiwa di United State berkontribusi sebanyak 2.6% dari seluruh dunia, Maka nilai 10% akan menjadi 0.26%. 
             Nilai tersebut bahkan tak dapat dijadikan ukuran, kita berbicara tentang perubahan disini bahwa nilai 0.26% 
-            tidak dapat diukur perubahannya dari pandangan Orang yang mengukur sesuatu."
+            tidak dapat diukur perubahannya dari pandangan Orang yang mengukur sesuatu. Karena saya telah berpengalaman dalam mengukur 
+            Metana <strong>CH<sub>4</sub></strong> di dalam Tanah, di Udara dan bahkan di Luar Angkasa. Dan saya berani katakan bahwa 
+            segala perubahan di bawah 1% bukanlah nilai yang dapat diukur perubahannya."
+            <span className="block mt-2 text-burger-light">- Dr. Frank Mitloehner</span>
           </blockquote>
-          <p className="font-semibold text-white">Apakah Sapi benar benar mengonsumsi sebagian besar air?</p>
-          <blockquote className="border-l-4 border-burger-red pl-4 italic">
-            "Air yang dikonsumsi sapi adalah 94% Green Water dan Green Water adalah Air Hujan. 
+          <p className="mt-4">Tapi tunggu dulu, Kenapa pengurangan emisinya begitu rendah? Mari kita pecah satu per satu</p>
+          
+          <p className="font-semibold text-white mt-6">Apakah Sapi benar benar mengonsumsi sebagian besar air?</p>
+          <p className="italic">"Untuk membuat 24 Burger Patties dibutuhkan Air sebanyak satu Kolam Renang" <strong>- Mark Rober</strong></p>
+          <p>Perlu diketahui bahwa air yang dikonsumsi oleh Sapi tidak hilang begitu saja, melainkan berputar dalam siklus</p>
+          
+          <blockquote className="border-l-4 border-burger-red pl-4 italic mt-4">
+            "Air yang dikonsumsi sapi adalah 94% <strong>Green Water</strong> dan Green Water adalah Air Hujan. 
             Air Hujan akan jatuh ke ladang dengan ternak dan tanpa ternak, Lalu air yang jatuh ke ladang dengan ternak 
-            akan dikonsumsi oleh ternak itu sendiri tapi dalam bentuk Pangan."
+            akan dikonsumsi oleh ternak itu sendiri tapi dalam bentuk Pangan (Air yang diserap gandum sebagai pangan ternak 
+            sebagai contoh) bukan sebagai bentuk air yang diminum langsung oleh ternak. Dan tebak apa yang terjadi beberapa 
+            jam kemudian? Mereka akan buang air kecil, airnya tidak menetap di tubuh ternak. Jadi air yang dikonsumsi tidak 
+            tiba tiba secara ajaib hilang dari muka Bumi."
+            <span className="block mt-2 text-burger-light">- Dr. Frank Mitloehner</span>
+          </blockquote>
+          
+          <p className="mt-4">
+            Jadi sangat tidak adil untuk mengatakan bahwa Sapi mengambil semua air kita, Apakah kita mengatakan hal yang sama 
+            kepada Pohon Pohon yang menyerap air untuk tumbuh? tentu tidak bukan?. Mereka yang membagikan statistik tentang Sapi 
+            yang mengonsumsi air dengan jumlah sangat besar, Mereka sebenarnya menghitung Air Hujan atau Green Water
+          </p>
+          
+          <p className="mt-4">
+            Justru hal yang harus kita khawatirkan adalah ketersediaan air bersih sedangkan 70% air bersih bertanggung jawab 
+            untuk irigasi dan penyiraman tumbuhan perkebunan
+          </p>
+          <p className="mt-2">
+            Sebuah studi mengatakan Almond California menggunakan 94.5% air bersih atau setara 1097 Liter per seperempat pon 
+            untuk penyiramannya hampir 10x lebih banyak dibanding Sapi (122 Liter per seperempat pon). Pikirkan itu ketika 
+            anda ingin memesan Almond Milk Latte
+          </p>
+          
+          <p className="mt-6 text-lg">Lalu bagaimana dengan sektor Makanan?</p>
+          
+          <p className="font-semibold text-white mt-4">Apakah Sapi mengambil Makanan yang seharusnya bisa di alihkan kepada Orang kelaparan?</p>
+          
+          <blockquote className="border-l-4 border-burger-red pl-4 italic mt-4">
+            "84% - 86% jumlah Pangan di seluruh Dunia bersifat Non-Edible. 16% sisanya bersifat Human-Edible tetapi kebanyakan 
+            mengarah ke Unggas dan Babi karena mereka adalah Hewan Monogastric, mirip seperti Manusia. Sedangkan Ternak Ruminant 
+            atau yang kita sebut Sapi, Rusa dan sebagainya memakan Pangan berjenis Non-Edible, Mereka seperti mendaur ulang 
+            Pangan Non-Edible menjadi sebuah Resource yang kaya akan Nutrisi dari pada membiarkannya sia sia"
+            <span className="block mt-2 text-burger-light">- Dr. Frank Mitloehner</span>
           </blockquote>
         </>
       ),
-      image: "/assets/img/united-states.jpg",
+      images: ["/assets/img/united-states.jpg", "/assets/img/water.jpg"],
       imageAlt: "United States landscape",
       reverse: true
     },
@@ -105,7 +152,9 @@ const Article = () => {
           <blockquote className="border-l-4 border-burger-red pl-4 italic">
             "2/3 dari lahan agrikultur kita sebut dengan lahan Marginal - yang berarti anda tidak bisa menanam tumbuhan disana. 
             Alasan kenapa anda tidak bisa bertani disana bisa karena lahan penuh bebatuan, terlalu berbukit dan tanahnya 
-            kurang bagus atau kekurangan sumber mata air. Satu satunya penghasil bahan makanan disana adalah Ternak Ruminant."
+            kurang bagus atau kekurangan sumber mata air. Satu satunya penghasil bahan makanan disana adalah Ternak Ruminant. 
+            Dan 1/3 lahan sisanya adalah lahan Arable, lahan yang subur dan dapat dijadikan untuk bertani"
+            <span className="block mt-2 text-burger-light">- Dr. Frank Mitloehner</span>
           </blockquote>
           <p>
             Sekarang kita tahu, bahwa Sapi tidak mengambil lahan kita melainkan membuat pemanfaatan sumber daya alam 
@@ -132,6 +181,17 @@ const Article = () => {
             "Jika Sampah Makanan kita samakan dengan sebuah Negara, maka itu akan menempati urutan ke tiga dari 
             Negara penghasil emisi terbesar di dunia"
           </blockquote>
+          
+          <p className="mt-4">
+            Apa yang muncul di benak Anda ketika mendengar 40% Makanan di United State berakhir tidak dimakan?<br />
+            Faktanya Studi mengatakan jika seluruh masyarakat menjadi Vegetarians (Plant-Based) adalah menyia nyiakan Makanan, 
+            ini penting karena... <strong>What is getting wasted?</strong>
+          </p>
+          
+          <p className="mt-4">
+            Daging dan Susu berkontribusi sebanyak 14% dari Sampah Makanan tapi Makanan yang tidak berbasis hewan memegang 
+            Mayoritas dengan nilai 82% sebagai detail:
+          </p>
           <div className="bg-gray-800/50 p-4 rounded-lg">
             <p className="font-semibold text-white mb-2">Food Waste Statistics:</p>
             <ul className="space-y-1">
@@ -141,7 +201,10 @@ const Article = () => {
               <li>• Daging dan Susu: 14%</li>
             </ul>
           </div>
-          <p className="font-bold text-white text-lg mt-4">
+          <p className="font-bold text-white text-lg mt-6">
+            Inti dari pembahasan kali ini adalah jika Anda ingin berdiskusi tentang "Environmental Impact" dari makanan kita, 
+            dari pada kita menyerukan kampanye seperti Meatless Mondays kenapa tidak menyerukan hal seperti No-Food-Waste Wednesday? 
+            mungkin?. itu akan lebih bernilai untuk waktu kita.<br />
             Lalu bagaimana cara kita menghormati Makanan?, salah satu caranya adalah dengan Memakan 
             <span className="text-gradient text-2xl"> Burgers!</span>
           </p>

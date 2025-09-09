@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white m-0;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .burger-gradient {
+    background: linear-gradient(135deg, #c21010 0%, #e64848 100%);
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-burger-red to-burger-light bg-clip-text text-transparent;
+    animation: gradient-shift 4s ease infinite;
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(194, 16, 16, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(230, 72, 72, 0.8);
+    }
+  }
+  
+  .glow-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
